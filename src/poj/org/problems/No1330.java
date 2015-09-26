@@ -52,31 +52,27 @@ public class No1330 implements IProblem {
             throw new IllegalArgumentException("Values has to be greater that 0");
         }
 
-        int nearestCommonAncestor = -1;
         Stack<Integer> anc1 = this.getAncestors(child1);
         Stack<Integer> anc2 = this.getAncestors(child2);
+        int nearestCommonAncestor = -1;
+        int child1Anc;
+        int child2Anc;
 
-        if (!anc1.empty() && !anc2.empty()) {
-
-            // Get the top most ancestor
-            int child1Anc = anc1.pop();
-            int child2Anc = anc2.pop();
-
-            while (child1Anc != 0 && child2Anc != 0) {
-                if (child1Anc == child2Anc) {
-                    nearestCommonAncestor = child1Anc;
-                }
-                try {
-                    child1Anc = anc1.pop();
-                    child2Anc = anc2.pop();
-                } catch (Exception ex) {
-                    // Don't have to worry about this exception
-                    // If this happens, then most likely, 
-                    // one of the ancestor stack is empty.
-                    return nearestCommonAncestor;
-                }
+        do {
+            if (anc1.empty() || anc2.empty()) {
+                break;
             }
-        }
+            
+            child1Anc = anc1.pop();
+            child2Anc = anc2.pop();
+
+            if (child1Anc == child2Anc) {
+                nearestCommonAncestor = child1Anc;
+            } else {
+                // once they stop matching then there's no hope.
+                break;
+            }
+        } while (!anc1.empty() && !anc2.empty());
 
         return nearestCommonAncestor;
     }
@@ -104,7 +100,7 @@ public class No1330 implements IProblem {
         Scanner scanner = new Scanner(System.in);
         int child1;
         int child2;
-        
+
         while (true) {
             System.out.print("Enter first child: ");
             child1 = scanner.nextInt();
