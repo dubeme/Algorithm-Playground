@@ -70,6 +70,9 @@ public class No1330 implements IProblem {
                     child1Anc = anc1.pop();
                     child2Anc = anc2.pop();
                 } catch (Exception ex) {
+                    // Don't have to worry about this exception
+                    // If this happens, then most likely, 
+                    // one of the ancestor stack is empty.
                     return nearestCommonAncestor;
                 }
             }
