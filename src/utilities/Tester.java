@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package poj.org.problems;
+package utilities;
 
+import open.kattis.com.problems.TowersOfPower2;
 import utilities.IProblem;
 
 /**
@@ -14,7 +15,7 @@ import utilities.IProblem;
 public class Tester {
 
     public static void main(String[] args) {
-        IProblem client = new No1330();
+        IProblem client = new TowersOfPower2();
         client.Execute();
     }
 }
